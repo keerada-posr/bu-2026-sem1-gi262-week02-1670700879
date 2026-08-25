@@ -55,9 +55,14 @@ namespace Workshop.Student
             }
 
             // 5. random foods
-            int FoodXposition = UnityEngine.Random.Range(0, columns);
-            int FoodYposition = UnityEngine.Random.Range(0, rows);
-            Instantiate(foodTiles[0], new Vector2(FoodYposition, FoodXposition), Quaternion.identity);
+            int numberOfFood = UnityEngine.Random.Range(2, 3);
+            for (int i = 0; i < numberOfFood; i++)
+            {
+                int FoodXposition = UnityEngine.Random.Range(0, columns);
+                int FoodYposition = UnityEngine.Random.Range(0, rows);
+                int r = UnityEngine.Random.Range(0, foodTiles.Length);
+                Instantiate(foodTiles[0], new Vector2(FoodYposition, FoodXposition), Quaternion.identity);
+            }
 
             // 6. generate item along with the saveItemMap
 
