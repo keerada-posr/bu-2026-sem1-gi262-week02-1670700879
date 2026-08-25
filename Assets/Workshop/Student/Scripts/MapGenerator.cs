@@ -61,10 +61,24 @@ namespace Workshop.Student
                 int FoodXposition = UnityEngine.Random.Range(0, columns);
                 int FoodYposition = UnityEngine.Random.Range(0, rows);
                 int r = UnityEngine.Random.Range(0, foodTiles.Length);
-                Instantiate(foodTiles[0], new Vector2(FoodYposition, FoodXposition), Quaternion.identity);
+                Instantiate(foodTiles[r], new Vector2(FoodXposition, FoodYposition), Quaternion.identity);
             }
 
             // 6. generate item along with the saveItemMap
+            for ( int y = 0; y < saveItemMap.GetLength(0); y++)
+            {
+                for (int x = 0; x < saveItemMap.GetLength(1); x++)
+                {
+                    string item = saveItemMap[x, y];
+                    if (string.IsNullOrEmpty(item))
+                    {
+                        foreach (var food in foodTiles)
+                        {
+                            Instantiate(food, new Vector2(x, y), Quaternion.identity);
+                        }
+                    }
+                }
+            }
 
             // 7. place exit
 
