@@ -10,11 +10,11 @@ namespace Assignment
     {
         public void Start()
         {
-            AS01_RandomItemDrop();
+            // AS01_RandomItemDrop();
             // AS02_NestedLoopForCreate2DMap();
             // AS03_NestedLoopForMakingWallAround();
             // AS04_AttackEnemy();
-            // AS05_DynamicIterationLoop();
+            AS05_DynamicIterationLoop();
             // AS06_WhileLoopAndArray();
             // AS07_HealTargetAtIndex();
             // AS08_RandomPickingDialogue();
@@ -46,7 +46,9 @@ namespace Assignment
         public GameObject[] as01_items;
         public void AS01_RandomItemDrop()
         {
-            throw new NotImplementedException();
+            int r = UnityEngine.Random.Range(0, as01_items.Length);
+            GameObject go = Instantiate(as01_items[r], new Vector2(0, 0), Quaternion.identity);
+            Debug.Log($"Got item: {go.name}");
         }
 
         /*
@@ -108,7 +110,17 @@ namespace Assignment
         public int as02_rows;
         public void AS02_NestedLoopForCreate2DMap()
         {
-            throw new NotImplementedException();
+            Debug.Log($"Column: {as02_columns}");
+            Debug.Log($"Row: {as02_rows}");
+            for (int y = 0; y < as02_rows; y++)
+            {
+                for (int x = 0; x < as02_columns; x++)
+                {
+                    int r = UnityEngine.Random.Range(0, as02_floorTiles.Length);
+                    GameObject tile = Instantiate(as02_floorTiles[r], new Vector2(x, y), Quaternion.identity);
+                    Debug.Log(tile.name);
+                }
+            }
         }
 
         /*
@@ -202,7 +214,17 @@ namespace Assignment
         public int as03_rows;
         public void AS03_NestedLoopForMakingWallAround()
         {
-            throw new NotImplementedException();
+            for (int y = -1; y < as03_rows + 1; y++)
+            {
+                for (int x = -1; x < as03_columns + 1; x++)
+                {
+                    if (x == -1 || x == as03_columns || y == -1 || y == as03_rows)
+                    {
+                        GameObject wall = Instantiate(as03_wall, new Vector2(x, y), Quaternion.identity);
+                        Debug.Log(wall.name);
+                    }
+                }
+            }
         }
 
         /*
@@ -237,7 +259,23 @@ namespace Assignment
         public int as04_target;
         public void AS04_AttackEnemy()
         {
-            throw new NotImplementedException();
+            as04_enemyHP[0] -= as04_damage;
+            Debug.Log($"First Enemy hp :{as04_enemyHP[0]}");   //attack first enemy
+
+            int lastIndex = as04_enemyHP.Length - 1;
+            as04_enemyHP[lastIndex] -= as04_damage;
+            Debug.Log($"Last Enemy hp :{as04_enemyHP[lastIndex]}");    //attack last enemy
+
+            //attack target enemy
+            if (as04_target >= 0 && as04_target < as04_enemyHP.Length)
+            {
+                as04_enemyHP[as04_target] -= as04_damage;
+                Debug.Log($"Target Enemy {as04_target} hp :{as04_enemyHP[as04_target]}");
+            }
+            else
+            {
+                Debug.Log($"Invalid target index: {as04_target}");
+            }
         }
 
         /*
@@ -260,7 +298,10 @@ namespace Assignment
         public int as05_n;
         public void AS05_DynamicIterationLoop()
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < as05_n; i++)
+            {
+                Debug.Log($"i = {i}");
+            }
         }
 
         /*
