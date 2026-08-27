@@ -22,10 +22,10 @@ namespace Assignment
             // AS10_FindSummationFromZeroToNUsingWhileLoop();
             // AS11_SpawnEnemies();
             // StartCoroutine(AS12_CountTime());
-            AS13_SumOfNumbersInRow();
+            // AS13_SumOfNumbersInRow();
             // AS14_SumOfNumbersInColumn();
             // AS15_MakeTheTriangle();
-            // AS16_MultiplicationTableOf_2_3_and_4();
+            AS16_MultiplicationTableOf_2_3_and_4();
             // EX_01_TicTacToeGame_TurnPlay();
 
         }
@@ -613,7 +613,12 @@ namespace Assignment
         public void AS13_SumOfNumbersInRow()
         {
             var matrix = as13_matrix.Get2DArray();
-            throw new NotImplementedException();
+            int sum = 0;
+            for (int r = 0; r < matrix.GetLength(1); r++)
+            {
+                sum += matrix[as13_row, r];
+            }
+            Debug.Log($"Sum of Row {as13_row}: {sum}");
         }
 
         /*
@@ -669,7 +674,12 @@ namespace Assignment
         public void AS14_SumOfNumbersInColumn()
         {
             var matrix = as14_matrix.Get2DArray();
-            throw new NotImplementedException();
+            int sum = 0;
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                sum += matrix[i, as14_column];
+            }
+            Debug.Log($"Sum of Column {as14_column}: {sum}");
         }
 
         /*
@@ -719,7 +729,15 @@ namespace Assignment
         public int as15_size;
         public void AS15_MakeTheTriangle()
         {
-            throw new NotImplementedException();
+            for (int i = 1; i <= as15_size; i++)
+            {
+                string line = "";
+                for (int r = 1; r <= i; r++)
+                {
+                    line += "*";
+                }
+                Debug.Log(line);
+            }
         }
 
         /*
@@ -748,7 +766,19 @@ namespace Assignment
          */
         public void AS16_MultiplicationTableOf_2_3_and_4()
         {
-            throw new NotImplementedException();
+            for (int i = 1; i <= 12; i++)
+            {
+                string line = "";
+                for (int r = 2; r <= 4; r++)
+                {
+                    line += $"{r} x {i} = {r * i}";
+                    if (r < 4)
+                    {
+                        line += "\t";
+                    }
+                }
+                Debug.Log(line);
+            }
         }
 
         #endregion
