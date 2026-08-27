@@ -14,7 +14,7 @@ namespace Assignment
             // AS02_NestedLoopForCreate2DMap();
             // AS03_NestedLoopForMakingWallAround();
             // AS04_AttackEnemy();
-            AS05_DynamicIterationLoop();
+            // AS05_DynamicIterationLoop();
             // AS06_WhileLoopAndArray();
             // AS07_HealTargetAtIndex();
             // AS08_RandomPickingDialogue();
@@ -22,7 +22,7 @@ namespace Assignment
             // AS10_FindSummationFromZeroToNUsingWhileLoop();
             // AS11_SpawnEnemies();
             // StartCoroutine(AS12_CountTime());
-            // AS13_SumOfNumbersInRow();
+            AS13_SumOfNumbersInRow();
             // AS14_SumOfNumbersInColumn();
             // AS15_MakeTheTriangle();
             // AS16_MultiplicationTableOf_2_3_and_4();
@@ -350,7 +350,11 @@ namespace Assignment
         public string[] as06_ironManSuitNames;
         public void AS06_WhileLoopAndArray()
         {
-            throw new NotImplementedException();
+            for (int index = 0; index < as06_ironManSuitNames.Length; index++)
+            {
+                string suitName = as06_ironManSuitNames[index];
+                Debug.Log(suitName);
+            }
         }
 
         /*
@@ -388,7 +392,25 @@ namespace Assignment
         public int as07_targetIndex;
         public void AS07_HealTargetAtIndex()
         {
-            throw new NotImplementedException();
+            as07_heroHPs[0] = as07_heroHPs[0] + as07_heal;   //heal first hero
+            Debug.Log($"First Hero HP : {as07_heroHPs[0]}");
+
+            int finalHero = as07_heroHPs.Length - 1;   //heal final hero
+            as07_heroHPs[finalHero] = as07_heroHPs[finalHero] + as07_heal;
+            Debug.Log($"Last Hero HP : {as07_heroHPs[finalHero]}");
+
+            //heal selected hero
+            bool validTarget = as07_targetIndex >= 0 && as07_targetIndex < as07_heroHPs.Length;
+
+            if (validTarget)
+            {
+                as07_heroHPs[as07_targetIndex] += as07_heal;
+                Debug.Log($"Target Hero ({as07_targetIndex}) HP: {as07_heroHPs[as07_targetIndex]}");
+            }
+            else
+            {
+                Debug.Log($"Invalid target index: {as07_targetIndex}");
+            }
         }
 
         /*
@@ -415,7 +437,8 @@ namespace Assignment
         public string[] as08_dialogues;
         public void AS08_RandomPickingDialogue()
         {
-            throw new NotImplementedException();
+            int r = UnityEngine.Random.Range(0, as08_dialogues.Length);
+            Debug.Log(as08_dialogues[r]);
         }
 
         /*
@@ -441,7 +464,11 @@ namespace Assignment
         public int as09_n;
         public void AS09_MultiplicationTable()
         {
-            throw new NotImplementedException();
+            for (int i = 1; i <= 12; i++)
+            {
+                int result = as09_n * i;
+                Debug.Log($"{as09_n}x{i}={result}");
+            }
         }
 
         /*
@@ -467,8 +494,15 @@ namespace Assignment
         public int as10_n;
         public void AS10_FindSummationFromZeroToNUsingWhileLoop()
         {
-            throw new NotImplementedException();
+            int total = 0;
+            int number = 1;
 
+            while (number <= as10_n)
+            {
+                total = total + number;
+                number += 1;
+            }
+            Debug.Log($"ผลรวมของ n จาก: {as10_n} คือ {total}");
         }
 
         /*
@@ -494,7 +528,11 @@ namespace Assignment
         public GameObject as11_enemyPrefab;
         public void AS11_SpawnEnemies()
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < as11_enemyHPs.Length; i++)
+            {
+                GameObject enemy = Instantiate(as11_enemyPrefab, new Vector2(i + 1, 0), Quaternion.identity);
+                Debug.Log($"Spawned Enemy {i + 1} at position: {enemy.transform.position}");
+            }
         }
 
         /*
@@ -507,7 +545,17 @@ namespace Assignment
         public float as12_countTime;
         public IEnumerator AS12_CountTime()
         {
-            throw new NotImplementedException();
+            float timeLeft = as12_countTime;
+
+            while (timeLeft > 0f)
+            {
+                Debug.Log($"Time Remaining: {timeLeft} seconds");
+
+                yield return new WaitForSeconds(1f);
+
+                timeLeft -= 1f;
+            }
+            Debug.Log("Time up!");
         }
 
         /*
